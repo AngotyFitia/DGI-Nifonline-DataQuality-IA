@@ -52,7 +52,8 @@ def run_extraction():
     for fkt in fokontany:
         locality_no = wereda.get(fkt["wereda_no"])
         district = locality.get(locality_no, "UNKNOWN")
-        # Ajouter dans un set pour éviter les doublons
+        
+        # Set pour supprimer les doublons
         rows_set.add((district, fkt["commune"], "Validé"))
 
     OUTPUT_DIR.mkdir(exist_ok=True)
