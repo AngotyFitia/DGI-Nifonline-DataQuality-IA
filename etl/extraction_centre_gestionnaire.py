@@ -48,7 +48,6 @@ def run_extraction():
 
     OUTPUT_DIR.mkdir(exist_ok=True)
 
-    # --- Fichier coordonnees.csv ---
     with open(OUTPUT_DIR / "coordonnees.csv", "w", newline="", encoding="utf-8") as f:
         writer = csv.writer(f)
         writer.writerow([
@@ -57,13 +56,26 @@ def run_extraction():
         ])
         for c in centres:
             commune = wereda.get(c["wereda_no"], "UNKNOWN")
+
+            # Conditions : si champ vide ou NULL → valeur par défaut
+            email = c["mail"] if c["mail"] else "Non disponible"
+            tel = c["tel"] if c["tel"] else "Non disponible"
+            tel2 = c["tel2"] if c["tel2"] else "Non disponible"
+            adresse = c["adresse"] if c["adresse"] else "Non disponible"
+            code_postal = c["code_postal"] if c["code_postal"] else "Non disponible"
+
+            site_web = "N/A"
+            latitude = "N/A"
+            longitude = "N/A"
+
+            type_adresse = c["adresse"] if c["adresse"] else "Inconnu"
+
             writer.writerow([
-                commune, c["mail"], c["tel"], c["tel2"],
-                "N/A", c["adresse"], c["code_postal"],
-                "N/A", "N/A", "Bureau", "Validé"
+                commune, email, tel, tel2,
+                site_web, adresse, code_postal,
+                latitude, longitude, type_adresse, "Validé"
             ])
 
-    # --- Fichier centre_gestionnaire.csv ---
     with open(OUTPUT_DIR / "centre_gestionnaire.csv", "w", newline="", encoding="utf-8") as f:
         writer = csv.writer(f)
         writer.writerow([
@@ -76,7 +88,7 @@ def run_extraction():
                 c["designation"], c["rib"], commune, "Validé"
             ])
 
-    print("✅ Fichiers coordonnees.csv et centre_gestionnaire.csv générés avec succès.")
+    print("Fichiers coordonnees.csv et centre_gestionnaire.csv générés avec succès.")
 
 if __name__ == "__main__":
     run_extraction()
