@@ -1,0 +1,38 @@
+# --- Python ---
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# --- Virtualenv ---
+venv/
+env/
+
+# --- Données générées ---
+output/
+*.csv
+*.xlsx
+*.log
+
+# Données sources (confidentielles)
+data/
+
+# --- Jupyter ---
+.ipynb_checkpoints/
+
+# --- IDE ---
+.vscode/
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# --- OS ---
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# --- Tests temporaires ---
+*.tmp
+*.bak
