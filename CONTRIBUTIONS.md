@@ -11,4 +11,4 @@ Ce document retrace l'évolution du projet DGI et les principales contributions 
   - Implémentation de l'export csv
   - Automatisation de l'export des données et mise en place de la structure de la partie IA
 
-- Lien : https://github.com/AngotyFitia/DGI-DataQuality-Frontend/pull/1
+- Lien : https://github.com/AngotyFitia/DGI-DataQuality-IA/pull/1
