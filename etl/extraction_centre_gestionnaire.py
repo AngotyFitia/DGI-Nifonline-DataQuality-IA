@@ -88,7 +88,7 @@ def run_extraction():
                 commune = "Non disponible"
 
             writer.writerow([district, commune, 
-                             c["mail"], c["tel"], c["tel2"],
+                             c["mail"]+commune, c["tel"], c["tel2"],
                              "Non disponible", c["adresse"], c["code_postal"],
                              0.0, 0.0, "Validé"])
 
@@ -98,8 +98,13 @@ def run_extraction():
             "Email", "CodeBureau", "Abreviation", "NomCentre", "CompteBancaire", "Etat"
         ])
         for c in centres:
+            w = wereda.get(c["wereda_no"])
+            if w:
+                commune = communes.get(c["wereda_no"], w["wereda_desc"])
+            else:
+                commune = "Non disponible"
             writer.writerow([
-                c["mail"], c["code_bureau"], c["abbrev"],
+                c["mail"]+commune, c["code_bureau"], c["abbrev"],
                 c["designation"], c["rib"], "Validé"
             ])
     print("Fichiers coordonnees.csv et centre_gestionnaire.csv générés avec succès.")
